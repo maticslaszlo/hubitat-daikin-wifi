@@ -123,6 +123,7 @@ metadata {
         command "fanDirectionHorizontal"
         command "setFanRate", ["number"]
         command "setTemperature", ["number"]
+	command "updated"
     }
 
 
@@ -319,7 +320,11 @@ def updated() {
     }
     
     // this only need to be set once, but might be a select list in the future
-    sendEvent(name: "supportedThermostatFanModes", value: ["auto","silent","1","2","3","4","5"], displayed: false)
+    // sendEvent(name: "supportedThermostatFanModes", value: ["auto","silent","1","2","3","4","5"], displayed: false)
+    
+    // this must be set for dashboard tile
+    sendEvent(name: "supportedThermostatModes", value:  ["\"auto\"","\"cool\"","\"heat\"","\"fan\"","\"off\""], displayed: false)
+    sendEvent(name: "supportedThermostatFanModes", value: ["\"auto\"","\"silent\"","\"1\"","\"2\"","\"3\"","\"4\"","\"5\""], displayed: false)
 
     state.updated = now()
 }
